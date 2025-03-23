@@ -2,10 +2,10 @@ from datetime import datetime, timezone
 from typing import List
 
 from pydantic import BaseModel, Field
-from uuid import UUID
+
 
 class ChessGameSchema(BaseModel):
-    id: UUID | None = Field(default=None)
+    id: str | None = Field(default=None, alias="_id")
     game_status: str
     white: str
     moves: List[str]
