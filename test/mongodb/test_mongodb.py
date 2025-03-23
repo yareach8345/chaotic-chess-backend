@@ -7,7 +7,7 @@ from app.core.database import get_mongo_client
 from app.schemas.chess_game_schema import ChessGameSchema
 
 
-class MongoDBTest(unittest.IsolatedAsyncioTestCase):
+class TestMongoDB(unittest.IsolatedAsyncioTestCase):
 
     _mongo_client: AsyncIOMotorClient
 
