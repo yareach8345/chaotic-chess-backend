@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="init">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="chore: add mongodb connect info into .env&#10;&#10;.env파일에 MONGODB_CONNECTIOIN_STRING을 추가">
+      <change afterPath="$PROJECT_DIR$/app/repositories/chess_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/chess_game_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/mongodb/mongodb_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/container.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,7 @@
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -62,10 +68,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "FastAPI.ChaoticChess.executor": "Run",
+    "Python 테스트.mongodb_test.MongoDBTest.test_get_date의 Python 테스트.executor": "Run",
+    "Python 테스트.mongodb_test.MongoDBTest의 Python 테스트.executor": "Run",
+    "Python 테스트.mongodb_test.MyTestCase.test_get_date의 Python 테스트.executor": "Run",
+    "Python 테스트.mongodb_test.MyTestCase.test_ping의 Python 테스트.executor": "Run",
+    "Python 테스트.mongodb_test.MyTestCase의 Python 테스트.executor": "Run",
+    "Python 테스트.mongodb_test.py 내 Python 테스트.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "feature/db-io",
     "last_opened_file_path": "/home/yareach/coding/code/projects/ChaoticChess/app/routes/v1/endpoint",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -91,7 +104,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python 테스트.mongodb_test.MongoDBTest.test_get_date의 Python 테스트">
     <configuration name="ChaoticChess" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="ChaoticChess" />
@@ -107,6 +120,95 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="mongodb_test.MongoDBTest의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/mongodb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mongodb_test.MongoDBTest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mongodb_test.MongoDBTest.test_get_date의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/mongodb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mongodb_test.MongoDBTest.test_get_date&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mongodb_test.MyTestCase의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/mongodb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mongodb_test.MyTestCase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mongodb_test.MyTestCase.test_get_date의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/mongodb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mongodb_test.MyTestCase.test_get_date&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mongodb_test.MyTestCase.test_ping의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/mongodb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;mongodb_test.MyTestCase.test_ping&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python 테스트.mongodb_test.MongoDBTest.test_get_date의 Python 테스트" />
+        <item itemvalue="Python 테스트.mongodb_test.MongoDBTest의 Python 테스트" />
+        <item itemvalue="Python 테스트.mongodb_test.MyTestCase의 Python 테스트" />
+        <item itemvalue="Python 테스트.mongodb_test.MyTestCase.test_ping의 Python 테스트" />
+        <item itemvalue="Python 테스트.mongodb_test.MyTestCase.test_get_date의 Python 테스트" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -129,6 +231,10 @@
       <workItem from="1742434206564" duration="3509000" />
       <workItem from="1742438441052" duration="40000" />
       <workItem from="1742516925262" duration="1458000" />
+      <workItem from="1742521111331" duration="3409000" />
+      <workItem from="1742699661471" duration="1385000" />
+      <workItem from="1742705358384" duration="507000" />
+      <workItem from="1742709887413" duration="3690000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -242,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742516998496</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="chore: add mongodb connect info into .env&#10;&#10;.env파일에 MONGODB_CONNECTIOIN_STRING을 추가">
+      <option name="closed" value="true" />
+      <created>1742699795502</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1742699795502</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +375,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="chore: add mongodb connect info into .env&#10;&#10;.env파일에 아래와 같은 4개의 환경변수를 추가함&#10;MONGO_PASSWORD&#10;MONGO_USERNAME&#10;MONGO_HOST&#10;MONGO_APPNAME&#10;&#10;커넥션 스트링은 아래와 같이 만들어질 예정&#10;mongodb+srv://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/?appName=&lt;appname&gt;" />
+    <MESSAGE value="chore: add mongodb connect info into .env&#10;&#10;.env파일에 MONGODB_CONNECTIOIN_STRING을 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add mongodb connect info into .env&#10;&#10;.env파일에 MONGODB_CONNECTIOIN_STRING을 추가" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ChaoticChess$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1742700419808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1742716694605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/mongodb" />
   </component>
 </project>
