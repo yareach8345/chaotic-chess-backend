@@ -57,7 +57,6 @@ class TestChessRepository(unittest.IsolatedAsyncioTestCase):
             )
         )
         data = await self._repository.get_by_id(self._id)
-        print(data)
         self.assertIsNotNone(data)
         self.assertEqual(data.id, self._id)
         self.assertEqual(data.game_status, "ongoing")
