@@ -5,9 +5,10 @@ from uuid import UUID
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
 from app.dto.chess_move_dto import ChessMoveDTO
+from app.repositories.i_chess_repository import IChessRepository
 from app.schemas.chess_game_schema import ChessGameSchema
 
-class ChessRepository:
+class ChessRepository(IChessRepository):
     _chess_collection: AsyncIOMotorCollection
 
     def __init__(self, mongo_client: AsyncIOMotorClient):
