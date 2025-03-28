@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 class PieceType(enum.Enum):
     PAWN = "p"
-    KNIGHT = "k"
+    KNIGHT = "n"
     QUEEN = "q"
     KING = "k"
     ROOK = "r"
