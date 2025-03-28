@@ -2,7 +2,7 @@ from typing import List, Final
 
 from chess import Board
 
-from app.dto.move_dto import UserMoveDto, AIMoveDto, MoveDto
+from app.dto.move_dto import UserMoveDto, AIMoveDto, MoveDto, PieceColor
 from app.exception.game_exception import GameException
 from app.schemas.chess_game_schema import ChessGameSchema
 from app.utils.chess_util import fen_to_board, user_move, ai_move
@@ -24,7 +24,7 @@ class Game:
     moves: List[str]
 
     def __init__(self, chess_game_schema: ChessGameSchema):
-        self.board = fen_to_board(chess_game_schema.current_board)
+        self.board = fen_to_board(chess_game_schema.current_fen)
         self._turn = self.board.turn
         self._user_role = chess_game_schema.white == 'user'
         self._ai_role = self._user_role ^ True
@@ -34,12 +34,30 @@ class Game:
         # 해당 턴이 유저의 턴이 아닐 경우 에러 발생
         if self._user_role != self._turn:
             raise GameException("It's not users turn. but user try move")
+
+        # 두가지 경우를 생각해보자.
+        # case 1 _user_role가 True일 때 -> user가 백임을 의미함
+        # case 2 _user_role가 False일 때 -> user가 흑임을 의미함
+        # move_dto.color == PieceColor.WHITE는 움직이고자 하는 말이 백일 때 True, 흑일 때 False가 된다.
+        # 즉 아래의 조건문으로 움직이고자 하는 기물이 자신의 기물인지 구분할 수 있다.
+        if self._user_role != (move_dto.color == PieceColor.WHITE):
+            raise GameException(f"User is trying move users piece!")
+
         user_move(self.board, move_dto)
 
     def _ai_move(self, move_dto: AIMoveDto):
         # 해당 턴이 ai의 턴이 아닐 경우 에러 발생
         if self._ai_role != self._turn:
             raise GameException("It's not ai turn. but ai try move")
+
+        # 두가지 경우를 생각해보자.
+        # case 1 _ai_role가 True일 때 -> user가 백임을 의미함
+        # case 2 _ai_role가 False일 때 -> user가 흑임을 의미함
+        # move_dto.color == PieceColor.WHITE는 움직이고자 하는 말이 백일 때 True, 흑일 때 False가 된다.
+        # 즉 아래의 조건문으로 움직이고자 하는 기물이 자신의 기물인지 구분할 수 있다.
+        if self._ai_role != (move_dto.color == PieceColor.WHITE):
+            raise GameException(f"Ai is trying move users piece!")
+
         ai_move(self.board, move_dto)
 
     def move(self, move_dto: MoveDto):
@@ -49,4 +67,5 @@ class Game:
             self._ai_move(move_dto)
         else:
             raise GameException("Who try moving now?")
+        self._turn = not self._turn
         self.moves.append(move_dto.to_algebraic())
