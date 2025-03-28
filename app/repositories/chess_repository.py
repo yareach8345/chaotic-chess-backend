@@ -4,7 +4,7 @@ from uuid import UUID
 
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
-from app.dto.chess_move_dto import ChessMoveDTO
+from app.dto.db_update_dto import DBUpdateWithMovingDto
 from app.repositories.i_chess_repository import IChessRepository
 from app.schemas.chess_game_schema import ChessGameSchema
 
@@ -34,7 +34,7 @@ class ChessRepository(IChessRepository):
     # 기물의 움직임에 의한 갱신
     # moves에는 기물이 이동한 기록이
     # new_fen에는 현제 채스판의 모습이 fen 표기법으로 기록되어 있어야 한다.
-    async def update_by_moving(self, chess_game_id: str, chess_move_dto: ChessMoveDTO):
+    async def update_by_moving(self, chess_game_id: str, chess_move_dto: DBUpdateWithMovingDto):
         result = await self._chess_collection.update_one(
             { "_id": ObjectId(chess_game_id), },
             {

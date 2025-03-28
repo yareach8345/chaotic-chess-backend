@@ -5,7 +5,7 @@ from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.core.database import get_mongo_client
-from app.dto.chess_move_dto import ChessMoveDTO
+from app.dto.db_update_dto import DBUpdateWithMovingDto
 from app.repositories.chess_repository import ChessRepository
 from app.schemas.chess_game_schema import ChessGameSchema
 
@@ -51,7 +51,7 @@ class TestChessRepository(unittest.IsolatedAsyncioTestCase):
     async def test_update(self):
         await self._repository.update_by_moving(
             self._id,
-            ChessMoveDTO(
+            DBUpdateWithMovingDto(
                 moves=["mov-Rg1g8"],
                 new_fen="k5R1/8/8/8/8/8/8/7K b - - 101 100"
             )
