@@ -7,8 +7,6 @@ from app.exception.game_exception import GameException
 from app.schemas.chess_game_schema import ChessGameSchema
 from app.utils.chess_util import fen_to_board, user_move, ai_move
 
-## todo: write test codes
-
 class Game:
     board: Board
     #현제 차례가 누구 차례인가
