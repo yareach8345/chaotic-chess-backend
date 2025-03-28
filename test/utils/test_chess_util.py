@@ -3,13 +3,18 @@ import unittest
 from chess import IllegalMoveError
 
 from app.dto.move_dto import UserMoveDto, PieceColor, PieceType, AIMoveDto, AIMoveType
-from app.utils.chess_util import init_game, user_move, ai_move
+from app.utils.chess_util import init_game, user_move, ai_move, fen_to_board
 
 
 class ChessUtilTest(unittest.TestCase):
     def test_generate_game(self):
         fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"
         initialized_game = init_game()
+        self.assertTrue(initialized_game.fen().startswith(fen))
+
+    def test_generate_from_fen(self):
+        fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"
+        initialized_game = fen_to_board(fen)
         self.assertTrue(initialized_game.fen().startswith(fen))
 
     def test_user_move(self):
