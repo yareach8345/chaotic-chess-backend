@@ -20,9 +20,9 @@ class GameTest(unittest.TestCase):
         game = Game(self.sample_data)
 
         # black is user
-        self.assertEqual(game._user_role, False)
+        self.assertEqual(game.user_role, False)
         # white is ai
-        self.assertEqual(game._ai_role, True)
+        self.assertEqual(game.ai_role, True)
         # first turn is white
         self.assertEqual(game._turn, True)
         # not moved yet

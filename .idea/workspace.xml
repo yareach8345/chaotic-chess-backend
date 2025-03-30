@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)">
-      <change afterPath="$PROJECT_DIR$/test/chess_test/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/mongodb/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/repositories/__init__.py" afterDir="false" />
+    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="feat: add config for ai&#10;&#10;ai_client 파일에 ai를 사용하는데 필요한 기본적인 것들을 정의 하였다. get_chain을 이용하여 ai에 쉽게 접근할 수 있도록 하였다.">
+      <change afterPath="$PROJECT_DIR$/app/services/ai_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/testing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/ai_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/ai_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/domain/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/domain/test_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/test_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dto/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dto/test_move_dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/dto/test_move_dto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mongodb/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mongodb/test_mongodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/database_test/mongodb/test_mongodb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/test_chess_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/database_test/repositories/test_chess_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/dto/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/test_chess_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/utils/test_chess_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/ai-service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dto/game_info_dto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/chess_test/domain/test_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/test_game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +52,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/ai-service" />
+                    <option name="lastUsedInstant" value="1743132589" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="feature/chess-service" />
-                    <option name="lastUsedInstant" value="1743125951" />
+                    <option name="lastUsedInstant" value="1743132563" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
@@ -106,6 +103,7 @@
     "Python 테스트.mongodb_test.MyTestCase의 Python 테스트.executor": "Run",
     "Python 테스트.mongodb_test.py 내 Python 테스트.executor": "Run",
     "Python 테스트.test 내 Python 테스트.executor": "Run",
+    "Python 테스트.test_ai_client.AIClientTest의 Python 테스트.executor": "Run",
     "Python 테스트.test_chess_repository.TestChessRepository.test_delete의 Python 테스트.executor": "Run",
     "Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id_with_not_exists_id의 Python 테스트.executor": "Run",
     "Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id의 Python 테스트.executor": "Run",
@@ -131,13 +129,15 @@
     "Python 테스트.test_move_dto.MoveDtoTest.test_to_piece의 Python 테스트.executor": "Run",
     "Python 테스트.test_move_dto.MoveDtoTest의 Python 테스트.executor": "Run",
     "Python 테스트.test_move_dto.py 내 Python 테스트.executor": "Run",
+    "Python.ai_client.executor": "Run",
     "Python.chess_util.executor": "Run",
     "Python.game.executor": "Run",
     "Python.test_main.executor": "Run",
+    "Python.testing.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/chess-service",
+    "git-widget-placeholder": "feature/ai-service",
     "last_opened_file_path": "/home/yareach/coding/code/projects/ChaoticChess/test/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -164,7 +164,53 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
-  <component name="RunManager" selected="Python 테스트.database_test 내 Python 테스트">
+  <component name="RunManager" selected="Python.testing">
+    <configuration name="ai_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/core/ai_client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/testing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ChaoticChess" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="ChaoticChess" />
@@ -178,22 +224,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration name="chess_test 내 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ChaoticChess" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/chess_test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/chess_test&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="database_test 내 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -212,6 +242,22 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="test_ai_client.AIClientTest의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/langchain" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_ai_client.AIClientTest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="test.chess_test.domain.test_game.GameTest의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ChaoticChess" />
       <option name="ENV_FILES" value="" />
@@ -228,45 +274,13 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="test.chess_test.domain.test_game.GameTest.test_illegal_move의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ChaoticChess" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/chess_test/domain" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.chess_test.domain.test_game.GameTest.test_illegal_move&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test.chess_test.domain.test_game.GameTest.test_move의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ChaoticChess" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/chess_test/domain" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.chess_test.domain.test_game.GameTest.test_move&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.testing" />
+        <item itemvalue="Python.ai_client" />
+        <item itemvalue="Python 테스트.test_ai_client.AIClientTest의 Python 테스트" />
         <item itemvalue="Python 테스트.database_test 내 Python 테스트" />
-        <item itemvalue="Python 테스트.chess_test 내 Python 테스트" />
         <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest의 Python 테스트" />
-        <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest.test_illegal_move의 Python 테스트" />
-        <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest.test_move의 Python 테스트" />
       </list>
     </recent_temporary>
   </component>
@@ -304,7 +318,10 @@
       <workItem from="1743123537281" duration="1734000" />
       <workItem from="1743125288093" duration="371000" />
       <workItem from="1743125672948" duration="128000" />
-      <workItem from="1743125886010" duration="5161000" />
+      <workItem from="1743125886010" duration="6831000" />
+      <workItem from="1743259044458" duration="9748000" />
+      <workItem from="1743298050299" duration="6597000" />
+      <workItem from="1743309073165" duration="1394000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -522,13 +539,60 @@
       <option name="project" value="LOCAL" />
       <updated>1743130214867</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)">
+      <option name="closed" value="true" />
+      <created>1743131111802</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1743131111802</updated>
+    </task>
+    <task id="LOCAL-00029" summary="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)">
+      <option name="closed" value="true" />
+      <created>1743131121403</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1743131121403</updated>
+    </task>
+    <task id="LOCAL-00030" summary="refactor: changed the file structure in test directory&#10;&#10;test 디렉터위 하위의 구조를 수정하였다.&#10;&#10;이번 구조 변경의 주 목적인 외부 서비스(몽고db, ai 등)를 사용하는 서비스와 사용하지 않는 서비스를 구분하기 위함이었는데 이 변경으로 인해 아래와 같은 이점을 얻고자 하였다.&#10;&#10;1. 와이파이가 없을 경우, 외부 서비스에서 접속 허용하지 않은 네트워크를 사용할 경우 외부 서비스를 사용하는 테스트를 실행하지 않기 위해&#10;2. 프로젝트 내부의 코드를 테스트 하는 경우 시간을 단축시키기 위해">
+      <option name="closed" value="true" />
+      <created>1743131166475</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1743131166475</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: add config for ai&#10;&#10;ai_client 파일에 ai를 사용하는데 필요한 기본적인 것들을 정의 하였다. get_chain을 이용하여 ai에 쉽게 접근할 수 있도록 하였다.">
+      <option name="closed" value="true" />
+      <created>1743304832245</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1743304832245</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -539,7 +603,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/feature/chess-service" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>
@@ -567,13 +631,17 @@
     <MESSAGE value="feat: add function check target piece's owner.&#10;&#10;움직이고자 하는 기물이 자기 소유의 기물인지 확인하는 코드를 추가하였다.&#10;추가로 기물을 움직이고 난 후 _turn의 값을 변경시켜주는 코드를 추가했다." />
     <MESSAGE value="fix: changed KNIGHT value 'k' to 'n'&#10;&#10;테스트 코드 작성 중 Knight의 약자는 n이나 k로 설정되어있던 것을 발견하여 수정하였다." />
     <MESSAGE value="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)" />
+    <MESSAGE value="refactor: changed the file structure in test directory&#10;&#10;test 디렉터위 하위의 구조를 수정하였다.&#10;&#10;이번 구조 변경의 주 목적인 외부 서비스(몽고db, ai 등)를 사용하는 서비스와 사용하지 않는 서비스를 구분하기 위함이었는데 이 변경으로 인해 아래와 같은 이점을 얻고자 하였다.&#10;&#10;1. 와이파이가 없을 경우, 외부 서비스에서 접속 허용하지 않은 네트워크를 사용할 경우 외부 서비스를 사용하는 테스트를 실행하지 않기 위해&#10;2. 프로젝트 내부의 코드를 테스트 하는 경우 시간을 단축시키기 위해" />
+    <MESSAGE value="feat: add config for ai&#10;&#10;ai_client 파일에 ai를 사용하는데 필요한 기본적인 것들을 정의 하였다. get_chain을 이용하여 ai에 쉽게 접근할 수 있도록 하였다." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add config for ai&#10;&#10;ai_client 파일에 ai를 사용하는데 필요한 기본적인 것들을 정의 하였다. get_chain을 이용하여 ai에 쉽게 접근할 수 있도록 하였다." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ChaoticChess$ai_client.coverage" NAME="ai_client 커버리지 결과" MODIFIED="1743304404079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core" />
     <SUITE FILE_PATH="coverage/ChaoticChess$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1742700419808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ChaoticChess$game.coverage" NAME="game 커버리지 결과" MODIFIED="1743081764305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/domain" />
     <SUITE FILE_PATH="coverage/ChaoticChess$chess_util.coverage" NAME="chess_util 커버리지 결과" MODIFIED="1742994266376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/utils" />
     <SUITE FILE_PATH="coverage/ChaoticChess$test_main.coverage" NAME="test_main 커버리지 결과" MODIFIED="1742740519849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1743129786073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/database_test" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$testing.coverage" NAME="testing 커버리지 결과" MODIFIED="1743310446655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1743260998682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/langchain" />
   </component>
 </project>
