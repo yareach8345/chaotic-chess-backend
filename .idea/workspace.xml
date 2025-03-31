@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)">
-      <change afterPath="$PROJECT_DIR$/test/chess_test/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/mongodb/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/database_test/repositories/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/domain/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/domain/test_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/test_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dto/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dto/test_move_dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/dto/test_move_dto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mongodb/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mongodb/test_mongodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/database_test/mongodb/test_mongodb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/repositories/test_chess_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/database_test/repositories/test_chess_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/dto/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/test_chess_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/utils/test_chess_util.py" afterDir="false" />
-    </list>
+    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="feat: add classes about turn&#10;&#10;기존에 Game클래스가&#10;게임 관련 정보 관리 + 게임 진행&#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,15 +15,15 @@
       <list>
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
-        <option value="Python Unit Test" />
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/chess-service" />
+        <entry key="$PROJECT_DIR$" value="feature/ai-service" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,77 +78,98 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "FastAPI.ChaoticChess.executor": "Run",
-    "Python 테스트.chess_test 내 Python 테스트.executor": "Run",
-    "Python 테스트.database_test 내 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.MongoDBTest.test_get_date의 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.MongoDBTest의 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.MyTestCase.test_get_date의 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.MyTestCase.test_ping의 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.MyTestCase의 Python 테스트.executor": "Run",
-    "Python 테스트.mongodb_test.py 내 Python 테스트.executor": "Run",
-    "Python 테스트.test 내 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_delete의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id_with_not_exists_id의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_save의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_update의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository.test_use_repository의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.TestChessRepository의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_repository.py 내 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_ai_generate_test의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_ai_illegal_move의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_generate_from_fen의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_generate_game의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_user_illegal_move의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest.test_user_move의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.ChessUtilTest의 Python 테스트.executor": "Run",
-    "Python 테스트.test_chess_util.py 내 Python 테스트.executor": "Run",
-    "Python 테스트.test_game.GameTest.test_generate_game의 Python 테스트.executor": "Run",
-    "Python 테스트.test_game.GameTest.test_illegal_move의 Python 테스트.executor": "Run",
-    "Python 테스트.test_game.GameTest.test_move의 Python 테스트.executor": "Run",
-    "Python 테스트.test_game.GameTest의 Python 테스트.executor": "Run",
-    "Python 테스트.test_mongodb.py 내 Python 테스트.executor": "Run",
-    "Python 테스트.test_move_dto.MoveDtoTest.test_to_algebraic의 Python 테스트.executor": "Run",
-    "Python 테스트.test_move_dto.MoveDtoTest.test_to_piece의 Python 테스트.executor": "Run",
-    "Python 테스트.test_move_dto.MoveDtoTest의 Python 테스트.executor": "Run",
-    "Python 테스트.test_move_dto.py 내 Python 테스트.executor": "Run",
-    "Python.chess_util.executor": "Run",
-    "Python.game.executor": "Run",
-    "Python.test_main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/chess-service",
-    "last_opened_file_path": "/home/yareach/coding/code/projects/ChaoticChess/test/utils",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;FastAPI.ChaoticChess.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.chess_test 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.database_test 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.domain 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.MongoDBTest.test_get_date의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.MongoDBTest의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.MyTestCase.test_get_date의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.MyTestCase.test_ping의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.MyTestCase의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.mongodb_test.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test.chess_test.domain.test_ai_turn.TestAIMove.test_user_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_move.TestAIMove.test_user_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_move.TestAIMove.test_user_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_turn.TestAIMove.test_ai_checkmate의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_turn.TestAIMove.test_ai_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_turn.TestAIMove.test_user_illegal_move_but_illegal_move_not_except의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_ai_turn.TestAIMove의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_game.ChessGameTest.test_after_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_game.ChessGameTest.test_pass_all_steps의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_game.ChessGameTest의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_delete의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id_with_not_exists_id의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_get_by_id의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_save의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_update의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository.test_use_repository의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.TestChessRepository의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_repository.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_ai_generate_test의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_ai_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_generate_from_fen의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_generate_game의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_user_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest.test_user_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.ChessUtilTest의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_chess_util.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_game.GameTest.test_generate_game의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_game.GameTest.test_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_game.GameTest.test_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_game.GameTest의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_mongodb.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_move_dto.MoveDtoTest.test_to_algebraic의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_move_dto.MoveDtoTest.test_to_piece의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_move_dto.MoveDtoTest의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_move_dto.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_turn.TestTurn.test_generate_next_turn의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_turn.TestTurn의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_mo e.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_move.TestUserMove.test_user_checkmate의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_move.TestUserMove.test_user_illegal_move의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_move.TestUserMove.test_user_try_kill_king의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_move.TestUserMove의 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python 테스트.test_user_move.py 내 Python 테스트.executor&quot;: &quot;Run&quot;,
+    &quot;Python.chess_game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.chess_util.executor&quot;: &quot;Run&quot;,
+    &quot;Python.game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.turn_changer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/chess-service&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yareach/coding/code/projects/ChaoticChess/test/chess_test/domain&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/chess_test/domain" />
       <recent name="$PROJECT_DIR$/test/utils" />
       <recent name="$PROJECT_DIR$/test/repositories" />
       <recent name="$PROJECT_DIR$/test/mongodb" />
       <recent name="$PROJECT_DIR$/app/routes/v1/endpoint" />
-      <recent name="$PROJECT_DIR$/app/routes/v1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/domain" />
       <recent name="$PROJECT_DIR$/test/chess_test" />
       <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/test/database_test" />
       <recent name="$PROJECT_DIR$/test/repositories" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
-  <component name="RunManager" selected="Python 테스트.database_test 내 Python 테스트">
+  <component name="RunManager" selected="Python 테스트.chess_test 내 Python 테스트">
     <configuration name="ChaoticChess" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="ChaoticChess" />
@@ -196,23 +201,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="database_test 내 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ChaoticChess" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/database_test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/database_test&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test.chess_test.domain.test_game.GameTest의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="test_ai_turn.TestAIMove의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ChaoticChess" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -224,11 +213,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.chess_test.domain.test_game.GameTest&quot;" />
+      <option name="_new_target" value="&quot;test_ai_turn.TestAIMove&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="test.chess_test.domain.test_game.GameTest.test_illegal_move의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="test_ai_turn.TestAIMove.test_ai_checkmate의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ChaoticChess" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,11 +229,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.chess_test.domain.test_game.GameTest.test_illegal_move&quot;" />
+      <option name="_new_target" value="&quot;test_ai_turn.TestAIMove.test_ai_checkmate&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="test.chess_test.domain.test_game.GameTest.test_move의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="test_ai_turn.TestAIMove.test_ai_move의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ChaoticChess" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -256,17 +245,33 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.chess_test.domain.test_game.GameTest.test_move&quot;" />
+      <option name="_new_target" value="&quot;test_ai_turn.TestAIMove.test_ai_move&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_ai_turn.TestAIMove.test_user_illegal_move_but_illegal_move_not_except의 Python 테스트" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ChaoticChess" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test/chess_test/domain" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_ai_turn.TestAIMove.test_user_illegal_move_but_illegal_move_not_except&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python 테스트.database_test 내 Python 테스트" />
         <item itemvalue="Python 테스트.chess_test 내 Python 테스트" />
-        <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest의 Python 테스트" />
-        <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest.test_illegal_move의 Python 테스트" />
-        <item itemvalue="Python 테스트.test.chess_test.domain.test_game.GameTest.test_move의 Python 테스트" />
+        <item itemvalue="Python 테스트.test_ai_turn.TestAIMove의 Python 테스트" />
+        <item itemvalue="Python 테스트.test_ai_turn.TestAIMove.test_user_illegal_move_but_illegal_move_not_except의 Python 테스트" />
+        <item itemvalue="Python 테스트.test_ai_turn.TestAIMove.test_ai_checkmate의 Python 테스트" />
+        <item itemvalue="Python 테스트.test_ai_turn.TestAIMove.test_ai_move의 Python 테스트" />
       </list>
     </recent_temporary>
   </component>
@@ -305,6 +310,12 @@
       <workItem from="1743125288093" duration="371000" />
       <workItem from="1743125672948" duration="128000" />
       <workItem from="1743125886010" duration="5161000" />
+      <workItem from="1743395675954" duration="234000" />
+      <workItem from="1743395924197" duration="1238000" />
+      <workItem from="1743397534643" duration="3493000" />
+      <workItem from="1743412967980" duration="1607000" />
+      <workItem from="1743428762596" duration="8037000" />
+      <workItem from="1743470979572" duration="213000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -522,13 +533,52 @@
       <option name="project" value="LOCAL" />
       <updated>1743130214867</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="feat: add classes about turn&#10;&#10;기존에 Game클래스가 &#10;게임 관련 정보 관리 + 게임 진행 &#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다.">
+      <option name="closed" value="true" />
+      <created>1743436783361</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1743436783361</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: add classes about turn&#10;&#10;기존에 Game클래스가&#10;게임 관련 정보 관리 + 게임 진행&#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다.">
+      <option name="closed" value="true" />
+      <created>1743471015460</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1743471015460</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: add classes about turn&#10;&#10;기존에 Game클래스가&#10;게임 관련 정보 관리 + 게임 진행&#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다.">
+      <option name="closed" value="true" />
+      <created>1743471124053</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1743471124053</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/feature/chess-service" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -539,11 +589,16 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/feature/chess-service" />
+                        <option value="feature/chess-service" />
                       </list>
                     </value>
                   </entry>
                 </map>
+              </option>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="REGEX" value="true" />
+                </TextFilterSettings>
               </option>
             </State>
           </value>
@@ -567,13 +622,20 @@
     <MESSAGE value="feat: add function check target piece's owner.&#10;&#10;움직이고자 하는 기물이 자기 소유의 기물인지 확인하는 코드를 추가하였다.&#10;추가로 기물을 움직이고 난 후 _turn의 값을 변경시켜주는 코드를 추가했다." />
     <MESSAGE value="fix: changed KNIGHT value 'k' to 'n'&#10;&#10;테스트 코드 작성 중 Knight의 약자는 n이나 k로 설정되어있던 것을 발견하여 수정하였다." />
     <MESSAGE value="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add test codes for Game class&#10;&#10;Game 클래스를 위한 테스트코드를 추가했다.&#10;추가하는 과정에서 발견한 버그를 수정하였고, 필요한 부분을 채워넣었다. (수정한 부분은 이미 이전 커밋으로 업데이트 되었다.)" />
+    <MESSAGE value="feat: add classes about turn&#10;&#10;기존에 Game클래스가 &#10;게임 관련 정보 관리 + 게임 진행 &#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다." />
+    <MESSAGE value="refactory: add classes about turn&#10;&#10;기존에 Game클래스가 &#10;게임 관련 정보 관리 + 게임 진행 &#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다." />
+    <MESSAGE value="feat: add classes about turn&#10;&#10;기존에 Game클래스가&#10;게임 관련 정보 관리 + 게임 진행&#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add classes about turn&#10;&#10;기존에 Game클래스가&#10;게임 관련 정보 관리 + 게임 진행&#10;와 같은 두가지 역할을 담는거 같아 두 역할을 구분했다.&#10;&#10;움직이는 작업(Turn)과 체스판 정보 갱신 and 보관을 맡을 ChessGame으로 분리함으로 이동 전후로 처리과정이 필요할 때 Turn 객체를 수정하면 되고, ChessGame은 Turn에서 데이터를 불러오는 마춤형 저장소가 되었다." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ChaoticChess$ai_client.coverage" NAME="ai_client 커버리지 결과" MODIFIED="1743304404079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$turn_changer.coverage" NAME="turn_changer 커버리지 결과" MODIFIED="1743431169064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/domain" />
     <SUITE FILE_PATH="coverage/ChaoticChess$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1742700419808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ChaoticChess$game.coverage" NAME="game 커버리지 결과" MODIFIED="1743081764305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/domain" />
     <SUITE FILE_PATH="coverage/ChaoticChess$chess_util.coverage" NAME="chess_util 커버리지 결과" MODIFIED="1742994266376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/utils" />
     <SUITE FILE_PATH="coverage/ChaoticChess$test_main.coverage" NAME="test_main 커버리지 결과" MODIFIED="1742740519849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1743129786073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/database_test" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$testing.coverage" NAME="testing 커버리지 결과" MODIFIED="1743310468343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1743436568313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/chess_test" />
+    <SUITE FILE_PATH="coverage/ChaoticChess$chess_game.coverage" NAME="chess_game 커버리지 결과" MODIFIED="1743431754825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/domain" />
   </component>
 </project>
