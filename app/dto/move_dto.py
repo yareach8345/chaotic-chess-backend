@@ -5,12 +5,12 @@ from pydantic import BaseModel, Field
 
 
 class PieceType(enum.Enum):
-    PAWN = "p"
-    KNIGHT = "n"
-    QUEEN = "q"
-    KING = "k"
-    ROOK = "r"
-    BISHOP = "b"
+    PAWN = "P"
+    KNIGHT = "N"
+    QUEEN = "Q"
+    KING = "K"
+    ROOK = "R"
+    BISHOP = "B"
 
 class PieceColor(enum.Enum):
     WHITE = "white"
