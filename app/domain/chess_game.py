@@ -2,6 +2,7 @@ from typing import List, Final
 
 from chess import Board
 
+from app.dto.move_dto import MoveDto
 from app.schemas.chess_game_schema import ChessGameSchema
 from app.utils.chess_util import fen_to_board, user_move, ai_move
 
@@ -28,6 +29,6 @@ class ChessGame:
         #이동 수의 나머지가 0이 아니라면 반대로 흑(False)의 차례
         self.turn = True if len(self.moves) % 2 == 0 else False
 
-    def after_turn(self, move: str):
+    def after_turn(self, move: MoveDto):
         self.turn = not self.turn
-        self.moves.append(move)
+        self.moves.append(move.fen)

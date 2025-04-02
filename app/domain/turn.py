@@ -3,8 +3,7 @@ from enum import Enum
 from typing import Self
 
 from app.domain.chess_game import ChessGame
-from app.dto.move_dto import MoveDto, PieceColor
-from app.exception.game_exception import GameException
+from app.dto.move_dto import MoveDto
 
 
 class MoveResult(Enum):
@@ -23,30 +22,23 @@ class Turn(metaclass=abc.ABCMeta):
         self._game = game
         self._color = color
 
-    def _check(self, move_dto: MoveDto):
-        if self._color != self._game.turn:
-            raise GameException(f"It's not turn. but try move")
-
-        if self._color != (move_dto.color == PieceColor.WHITE):
-            raise GameException(f"It's is trying move users piece!")
-
-    def _before_moving(self, move_dto: MoveDto) -> MoveResult:
+    def _before_moving(self, move: MoveDto) -> MoveResult:
         pass
 
-    def _moving(self, move_dto: MoveDto) -> MoveResult:
+    def _moving(self, move: MoveDto) -> MoveResult:
         pass
 
-    def _after_turn(self, move_dto: MoveDto) -> MoveResult:
-        self._game.after_turn(move_dto.to_algebraic())
+    def _after_turn(self, move: MoveDto) -> MoveResult:
+        self._game.after_turn(move)
         return MoveResult.ONGOING
 
-    def _after_moving(self, move_dto: MoveDto) -> MoveResult:
+    def _after_moving(self, move: MoveDto) -> MoveResult:
         pass
 
     def _generate_next_turn(self) -> Self:
         pass
 
-    def move(self, move_dto: MoveDto) -> Self | MoveResult:
+    def move(self, move: MoveDto) -> Self | MoveResult:
         chain = [
             self._before_moving,
             self._moving,
@@ -54,10 +46,8 @@ class Turn(metaclass=abc.ABCMeta):
             self._after_moving
         ]
 
-        self._check(move_dto)
-
         for step in chain:
-            result = step(move_dto)
+            result = step(move)
             if result is not MoveResult.ONGOING:
                 return result
 

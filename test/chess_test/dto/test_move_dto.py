@@ -1,82 +1,24 @@
 import unittest
 
-from app.dto.move_dto import UserMoveDto, PieceType, PieceColor, AIMoveDto, AIMoveType
+import chess
+
+from app.dto.move_dto import MoveDto
 
 
 class MoveDtoTest(unittest.TestCase):
+    move_dto = MoveDto(fen="Qa1d1")
+
     def test_to_uci(self):
-        move_dto = UserMoveDto(
-            color=PieceColor.WHITE,
-            piece=PieceType.PAWN,
-            start="a4",
-            end="b5"
-        )
+        self.assertEqual(self.move_dto.to_uci(), "a1d1")
 
-        self.assertEqual(move_dto.to_uci(), "a4b5")
+    def test_get_piece(self):
+        self.assertEqual(self.move_dto.get_piece().piece_type, 5)
 
-    def test_to_piece(self):
-        move_dto1 = UserMoveDto(
-            color=PieceColor.WHITE,
-            piece=PieceType.PAWN,
-            start="a4",
-            end="b5"
-        )
+    def test_get_start_square(self):
+        self.assertEqual(self.move_dto.get_start_square(), chess.parse_square("a1"))
 
-        piece1 = move_dto1.to_piece()
-        self.assertEqual(piece1.symbol(), "P")
-
-        move_dto2 = UserMoveDto(
-            color=PieceColor.BLACK,
-            piece=PieceType.QUEEN,
-            start="a4",
-            end="b5"
-        )
-
-        piece2 = move_dto2.to_piece()
-        self.assertEqual(piece2.symbol(), "q")
-
-    def test_to_algebraic(self):
-        move_dto1 = UserMoveDto(
-            color=PieceColor.WHITE,
-            piece=PieceType.PAWN,
-            start="a4",
-            end="b5"
-        )
-
-        algebraic1 = move_dto1.to_algebraic()
-        self.assertEqual(algebraic1, "a4b5")
-
-        move_dto2 = UserMoveDto(
-            color=PieceColor.WHITE,
-            piece=PieceType.BISHOP,
-            start="a4",
-            end="c6"
-        )
-
-        algebraic2 = move_dto2.to_algebraic()
-        self.assertEqual(algebraic2, "Ba4c6")
-
-        move_dto3 = UserMoveDto(
-            color=PieceColor.BLACK,
-            piece=PieceType.QUEEN,
-            start="a4",
-            end="b5"
-        )
-
-        algebraic3 = move_dto3.to_algebraic()
-        self.assertEqual(algebraic3, "Qa4b5")
-
-        move_dto4 = AIMoveDto(
-            color=PieceColor.WHITE,
-            type=AIMoveType.GEN,
-            piece=PieceType.QUEEN,
-            start="a1",
-            end="c7"
-        )
-
-        algebraic4 = move_dto4.to_algebraic()
-        self.assertEqual(algebraic4, "Q??c7")
-
+    def test_get_end_square(self):
+        self.assertEqual(self.move_dto.get_end_square(), chess.parse_square("d1"))
 
 if __name__ == '__main__':
     unittest.main()

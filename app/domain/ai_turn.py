@@ -1,10 +1,11 @@
 from typing import Self
 
+import chess
 from chess import Board
 
 from app.domain.chess_game import ChessGame
 from app.domain.turn import Turn, MoveResult
-from app.dto.move_dto import MoveDto, AIMoveDto
+from app.dto.move_dto import MoveDto
 from app.utils.chess_util import ai_move
 
 class AITurn(Turn):
@@ -21,13 +22,30 @@ class AITurn(Turn):
         return MoveResult.ONGOING
 
     def _moving(self, move_dto: MoveDto) -> MoveResult:
-        if not isinstance(move_dto, AIMoveDto):
-            return MoveResult.ILLEGAL_INPUT
+        is_legal_move = True
+        piece: chess.Piece | None = None
 
-        try:
-            ai_move(self._board, move_dto)
-        except Exception as e:
-            return MoveResult.ILLEGAL_INPUT
+        if self._game.ai_color != self._board.piece_at(move_dto.get_start_square()).color:
+            is_legal_move = False
+            piece = self._board.piece_at(move_dto.get_start_square())
+
+            ai_piece = move_dto.get_piece()
+            ai_piece.color = self._game.ai_color
+            self._board.set_piece_at(move_dto.get_start_square(), ai_piece)
+        elif self._board.piece_at(move_dto.get_start_square()).piece_type != move_dto.get_piece().piece_type:
+            is_legal_move = False
+            ai_piece = move_dto.get_piece()
+            ai_piece.color = self._game.ai_color
+            self._board.set_piece_at(move_dto.get_start_square(), ai_piece)
+
+
+        is_legal_move = is_legal_move & ai_move(self._board, move_dto)
+
+        if piece is not None:
+            self._board.set_piece_at(move_dto.get_start_square(), piece)
+
+        if not is_legal_move:
+            move_dto.fen = move_dto.fen + "!"
 
         return MoveResult.ONGOING
 

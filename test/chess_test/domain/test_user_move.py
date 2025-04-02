@@ -1,53 +1,55 @@
 import unittest
 from datetime import datetime, timezone
 
+from chess import IllegalMoveError
+
 from app.domain.ai_turn import AITurn
 from app.domain.chess_game import ChessGame
 from app.domain.turn import generate_turn, MoveResult
-from app.dto.move_dto import PieceColor, PieceType, UserMoveDto
+from app.dto.move_dto import MoveDto
 from app.schemas.chess_game_schema import ChessGameSchema
 
 
 class TestUserMove(unittest.TestCase):
-    sample_data1 = ChessGameSchema(
-        game_status="ongoing",
-        white="user",
-        moves=[],
-        current_fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w",
-        updated_at=datetime.now(timezone.utc)
-    )
+    sample_data1: ChessGameSchema
+
+    def setUp(self):
+        self.sample_data1 = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=[],
+            current_fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w",
+            updated_at=datetime.now(timezone.utc)
+        )
 
     def test_user_move(self):
         game = ChessGame(self.sample_data1)
         turn = generate_turn(game)
-        next_turn = turn.move(
-            UserMoveDto(
-                color=PieceColor.WHITE,
-                piece=PieceType.KNIGHT,
-                start="b1",
-                end="a3",
-            )
-        )
+        next_turn = turn.move(MoveDto(fen="Nb1a3"))
 
         self.assertIsInstance(next_turn, AITurn)
         self.assertEqual(game.moves, ["Nb1a3"])
         self.assertEqual(game.turn, False)
         self.assertTrue(game.board.fen().startswith("rnbqkbnr/pppppppp/8/8/8/N7/PPPPPPPP/R1BQKBNR b"))
 
+    def test_user_move_but_piece_part_is_wrong(self):
+        game = ChessGame(self.sample_data1)
+        turn = generate_turn(game)
+
+        with self.assertRaises(IllegalMoveError):
+            turn.move(MoveDto(fen="Kb1a2"))
+
+        self.assertEqual(game.moves, [])
+        self.assertEqual(game.turn, True)
+        self.assertTrue(game.board.fen().startswith("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"))
+
     def test_user_illegal_move(self):
         game = ChessGame(self.sample_data1)
         turn = generate_turn(game)
-        next_turn = turn.move(
-            UserMoveDto(
-                color=PieceColor.WHITE,
-                piece=PieceType.KNIGHT,
-                start="b1",
-                end="a2",
-            )
-        )
 
-        self.assertIsInstance(next_turn, MoveResult)
-        self.assertEqual(next_turn, MoveResult.ILLEGAL_INPUT)
+        with self.assertRaises(IllegalMoveError):
+            turn.move(MoveDto(fen="Nb1a2"))
+
         self.assertEqual(game.moves, [])
         self.assertEqual(game.turn, True)
         self.assertTrue(game.board.fen().startswith("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"))
@@ -62,14 +64,7 @@ class TestUserMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(
-            UserMoveDto(
-                color=PieceColor.WHITE,
-                piece=PieceType.KNIGHT,
-                start="d6",
-                end="e8",
-            )
-        )
+        next_turn = turn.move(MoveDto(fen="Nd6e8"))
 
         self.assertEqual(next_turn, MoveResult.USER_LOSE_CUZ_KILL_KING)
         self.assertEqual(game.moves, [])
@@ -86,14 +81,7 @@ class TestUserMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(
-            UserMoveDto(
-                color=PieceColor.WHITE,
-                piece=PieceType.KNIGHT,
-                start="d2",
-                end="a2",
-            )
-        )
+        next_turn = turn.move(MoveDto(fen="Qd2a2"))
 
         self.assertEqual(next_turn, MoveResult.CHECKMATE_USER_WIN)
         self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/Q7/1R4K1 b"))

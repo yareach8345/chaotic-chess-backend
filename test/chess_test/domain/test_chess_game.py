@@ -5,7 +5,7 @@ from typing import Self
 
 from app.domain.chess_game import ChessGame
 from app.domain.turn import Turn, MoveResult
-from app.dto.move_dto import UserMoveDto, PieceColor, PieceType, AIMoveDto, AIMoveType, MoveDto
+from app.dto.move_dto import MoveDto
 from app.exception.game_exception import GameException
 from app.schemas.chess_game_schema import ChessGameSchema
 
@@ -45,8 +45,6 @@ class ChessGameTest(unittest.TestCase):
     def test_after_move(self):
         game = ChessGame(self.sample_data1)
         first_bool = game.turn
-        game.after_turn(
-            "TEST MESSAGE"
-        )
+        game.after_turn(MoveDto(fen="FEN"))
         self.assertEqual(not first_bool, game.turn)
-        self.assertEqual(game.moves, ["TEST MESSAGE"])
+        self.assertEqual(game.moves, ["FEN"])
