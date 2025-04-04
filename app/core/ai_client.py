@@ -5,41 +5,10 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 from app.core.config import GPT_MODEL
-from app.dto.move_dto import AIMoveType, PieceType
 
 
 class AIResponseAboutMove(BaseModel):
-    move_type: AIMoveType = Field(description="""
-        AI의 동작이 이동인지 생성인지 알기 위한 타입
-        AI의 동작이 출발점과 도착점이 존재하는 이동이라면 정상적인 이동이든 비정상적(SystemMessage에서 '이상한 수'로 정의된 이동)인 이동이든 "MOV"를 갖게 된다.
-        AI의 동작이 특정 위치에 기물을 소환하는 생성이라면 "GEN"이란 값을 갖게 된다.
-    """)
-
-    start: str | None = Field(description="""
-        말의 이동의 시작점을 기록하기 위한 필드
-        AI의 동작이 생성일 경우 이 경우는 따로 출발지점이 없으므로 None으로 기록하기 위해 Nullable로 만들었다.
-        AI의 말이 이동한 거라면 말이 출발한 출발지점을 기록, 아니라면(이번 동작이 생성이라면) None값이 된다.
-    """)
-
-    end: str = Field(description="""
-        MOV에 해당하는 동작일 경우 AI의 말의 이동의 도착점이며, 
-        GEN에 해당하는 동작일 경우 기물이 생성될 위치를 담을 필드.
-        
-        다시 말해 기물이 최종적으로 존재하는 위치이다.
-    """)
-
-    piece_type: PieceType = Field(description="""
-        체스 기물을 대수표기법에 사용되는 알파벳으로 기록한다.
-        P는 폰(Pawn), R은 룩(Rook), N은 나이트(Knight), B는 비숍(Bishop), Q는 퀸(Queen), K는 킹(King)의 의미하며
-        이 필드는 위 6개의 알파벳중 하나를 기록한다.
-    """)
-
-    is_strange_move: bool = Field(description="""
-        ai의 움직임이 비정상적인 움직임인지(SystemMessage에서 말한 '이상한 수'인지) 여부를 나타낸다.
-        
-        비정상적인 움직임이라면 True,
-        정상적인 움직임이라면 False가 채워진다.
-    """)
+    ai_moving: str = Field(description="너의 움직임을 대수표기법으로 알려줘.")
 
     result_fen: str = Field(description="""
         테스트를 위한 필드. 
@@ -53,11 +22,17 @@ class AIResponseAboutMove(BaseModel):
         이는 ai의 움직임에서 어떤 규칙을 어떻게 적용했는지와 제약사항을 잘 지켰는지 확인하고자 하기 위함이다.
     """)
 
+    message_to_user: str = Field(description="""
+        착수 후 유저에게 보낼 메시지야.
+        "{의도} 하기위해 {도착지점}(으)로 움직이겠습니다." 라거나 "저는 {기물}을 {도착지점}(으)로 움직여 ~를 하겠습니다."
+        같은 형식으로 간략한 메시지를 작성해줘. 말을 움직인 이유와 위치만 들어가있다면 형식을 바꿔도 괜찮아.
+    """)
+
 def generate_ai_client():
     return ChatOpenAI(
         # model="gpt-4.5-preview",
         model=GPT_MODEL,
-        temperature=0.6,
+        temperature=0.8,
     )
     # return ChatGoogleGenerativeAI(
     #      model="gemini-1.5-pro",
@@ -155,7 +130,9 @@ def generate_chat_prompt_template(
             4. 휴먼 메시지에서 유저가 이번에 움직인 수가 None이라 할 때.
                 네가 백이고 이 턴이 첫번째 턴이라면 유저는 움직일 수 없어. 이때 메시지를 포멧할 때 user_move로 None 값을 보낼건데
                 이 이유는 이 수가 이 게임의 첫 수이며 이전의 수가 존재 할 수 없기 때문이야.
-                      """),
+            
+            그리고 추가로 대답을 응답을 할 때 폰을 움직였어도 기물은 명시해줘. Pe2e4처럼 부탁해.
+            """),
         ("human",
             """안녕 나는 너와 체스를 두는 유저야. 너의 역할은 {ai_role}이야
             
