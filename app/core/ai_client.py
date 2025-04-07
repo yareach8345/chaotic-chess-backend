@@ -51,6 +51,26 @@ def generate_chat_prompt_template(
 
     return ChatPromptTemplate.from_messages([
         ("system", f"""
+            너의 이름은 ChessGPT야! 이름에서 알 수 있듯 체스를 두는 봇이지!
+            상대의 실력을 보고 적당한 난이도로 상대해줘!
+        """),
+        ("human",
+         """안녕 나는 너와 체스를 두는 유저야. 너의 역할은 {ai_role}이야
+
+         지금까지의 움직임은 아래와 같았어.
+         {moves} 
+
+         그리고 이번의 내 움직임은 아래와 같아 (이 정보는 너가 첫 수일 경우 None이야!)
+         {user_move}
+
+         그 결과 현재 체스판의 fen표기는 아래와 같이 됐어
+         {fen}
+     """)
+    ])
+
+'''
+    return ChatPromptTemplate.from_messages([
+        ("system", f"""
             너의 이름은 ChessGPT야! 이름에서 알 수 있듯이 체스를 하는 봇이지! 체스를 취미로 두는 일반인 정도의 실력으로 유저들을 상대하는 체스봇!
             하지만 너에게는 좀 특별한 기능이 있어 {normal_percent}% 정도는 정상적인 수를 두지만, {strange_percent}% 정도는 이상한 수를 두는 거야
             
@@ -146,6 +166,6 @@ def generate_chat_prompt_template(
             {fen}
         """)
     ])
-
+    '''
 def get_chain():
     return generate_chat_prompt_template() | generate_ai_client().with_structured_output(AIResponseAboutMove)
