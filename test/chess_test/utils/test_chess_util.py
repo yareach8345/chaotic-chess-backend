@@ -21,27 +21,27 @@ class ChessUtilTest(unittest.TestCase):
         fen = "r1bqkbnr/pppppppp/n7/8/8/2P5/PP1PPPPP/RNBQKBNR w"
         game = init_game()
 
-        user_move(game, MoveDto(fen="Pc2c3"))
-        ai_move(game, MoveDto(fen="Nb8a6"))
+        user_move(game, MoveDto(moving="Pc2c3"))
+        ai_move(game, MoveDto(moving="Nb8a6"))
 
         self.assertTrue(game.fen().startswith(fen))
 
     def test_user_illegal_move(self):
         game = init_game()
         with self.assertRaises(IllegalMoveError):
-            user_move(game, MoveDto(fen="Pc2c5"))
+            user_move(game, MoveDto(moving="Pc2c5"))
 
     def test_ai_illegal_move(self):
         fen = "r1bqkbnr/pppppppp/8/8/2P5/8/PPnPPPPP/RNBQKBNR w"
         game = init_game()
-        user_move(game, MoveDto(fen="Pc2c4"))
-        ai_move(game, MoveDto(fen="Nb8c2"))
+        user_move(game, MoveDto(moving="Pc2c4"))
+        ai_move(game, MoveDto(moving="Nb8c2"))
         self.assertTrue(game.fen().startswith(fen))
     
     def test_try_from_a_cell_do_not_have_any_piece(self):
         game = init_game()
         with self.assertRaises(AssertionError):
-            ai_move(game, MoveDto(fen="Qa3a5"))
+            ai_move(game, MoveDto(moving="Qa3a5"))
 
 if __name__ == '__main__':
     unittest.main()

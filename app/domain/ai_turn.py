@@ -45,7 +45,7 @@ class AITurn(Turn):
             self._board.set_piece_at(move_dto.get_start_square(), piece)
 
         if not is_legal_move:
-            move_dto.fen = move_dto.fen + "!"
+            move_dto.moving = move_dto.moving + "!"
 
         return MoveResult.ONGOING
 

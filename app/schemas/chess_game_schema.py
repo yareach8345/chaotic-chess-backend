@@ -3,7 +3,6 @@ from typing import List
 
 from pydantic import BaseModel, Field
 
-
 class ChessGameSchema(BaseModel):
     id: str | None = Field(default=None, alias="_id")
     game_status: str

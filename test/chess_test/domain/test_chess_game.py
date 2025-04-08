@@ -45,6 +45,6 @@ class ChessGameTest(unittest.TestCase):
     def test_after_move(self):
         game = ChessGame(self.sample_data1)
         first_bool = game.turn
-        game.after_turn(MoveDto(fen="FEN"))
+        game.after_turn(MoveDto(moving="FEN"))
         self.assertEqual(not first_bool, game.turn)
         self.assertEqual(game.moves, ["FEN"])

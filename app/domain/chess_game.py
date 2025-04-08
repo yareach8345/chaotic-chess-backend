@@ -31,4 +31,4 @@ class ChessGame:
 
     def after_turn(self, move: MoveDto):
         self.turn = not self.turn
-        self.moves.append(move.fen)
+        self.moves.append(move.moving)

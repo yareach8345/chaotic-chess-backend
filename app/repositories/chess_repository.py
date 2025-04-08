@@ -1,8 +1,7 @@
 import datetime
-from typing import Any, Coroutine
-from uuid import UUID
 
 from bson import ObjectId
+from chess import Board
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
 from app.dto.db_update_dto import DBUpdateWithMovingDto
 from app.repositories.i_chess_repository import IChessRepository
@@ -13,6 +12,12 @@ class ChessRepository(IChessRepository):
 
     def __init__(self, mongo_client: AsyncIOMotorClient):
         self._chess_collection = mongo_client.get_database("chaotic_chess").get_collection("chess_game")
+
+    async def set_updated_time_now(self, chess_game_id: str):
+        await self._chess_collection.update_one(
+            {"_id": chess_game_id},
+            {"$set": {"updated_time": datetime.datetime.now(datetime.UTC)}},
+        )
 
     # 데이터를 저장하는데 쓰임
     # 데이터를 처음 생성하는 경우에는 chess_game_schema의 id를 None으로 해둘 것
@@ -25,6 +30,7 @@ class ChessRepository(IChessRepository):
     # 매개변수로 불러올 id값을 str으로 전달한다.
     # id에 해당하는 값이 없을 시에는 None이 반환된다.
     async def get_by_id(self, chess_game_id: str) -> ChessGameSchema | None:
+        await self.set_updated_time_now(chess_game_id)
         result = await self._chess_collection.find_one( {"_id": ObjectId(chess_game_id)} )
         if result is None:
             return None
@@ -50,3 +56,19 @@ class ChessRepository(IChessRepository):
     async def delete_data(self, chess_game_id: str):
         result = await self._chess_collection.delete_one({ "_id": ObjectId(chess_game_id) })
         return result.deleted_count != 0
+
+    async def end_game(self, chess_game_id: str):
+        await self._chess_collection.update_one( { "_id": ObjectId(chess_game_id) }, { "$set" : {"game_status": "finished", "updated_at": datetime.datetime.now(datetime.UTC) }} )
+
+    async def reset_game(self, chess_game_id: str):
+        await self._chess_collection.update_one(
+            {"_id": ObjectId(chess_game_id)},
+            {
+                "$set": {
+                    "game_status": "ongoing",
+                    "moves": [],
+                    "current_fen": Board().fen(),
+                    "updated_at": datetime.datetime.now(datetime.UTC)
+                },
+            }
+        )

@@ -23,7 +23,7 @@ class TestAIMove(unittest.TestCase):
     def test_ai_move(self):
         game = ChessGame(self.sample_data1)
         turn = generate_turn(game)
-        next_turn = turn.move( MoveDto(fen="Nb1a3") )
+        next_turn = turn.move(MoveDto(moving="Nb1a3"))
 
         self.assertIsInstance(next_turn, UserTurn)
         self.assertEqual(game.moves, ["Nb1a3"])
@@ -33,7 +33,7 @@ class TestAIMove(unittest.TestCase):
     def test_user_illegal_move_but_illegal_move_not_except(self):
         game = ChessGame(self.sample_data1)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Nb1a2"))
+        next_turn = turn.move(MoveDto(moving="Nb1a2"))
 
         self.assertIsInstance(next_turn, UserTurn)
         self.assertEqual(game.moves, ["Nb1a2!"])
@@ -50,7 +50,7 @@ class TestAIMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Qd2a2"))
+        next_turn = turn.move(MoveDto(moving="Qd2a2"))
 
         self.assertEqual(next_turn, MoveResult.CHECKMATE_USER_LOSE)
         self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/Q7/1R4K1 b"))
@@ -66,7 +66,7 @@ class TestAIMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Nd2a2"))
+        next_turn = turn.move(MoveDto(moving="Nd2a2"))
 
         self.assertNotEqual(next_turn, MoveResult.CHECKMATE_USER_LOSE)
         self.assertIsInstance(next_turn, UserTurn)
@@ -83,7 +83,7 @@ class TestAIMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Na8b6"))
+        next_turn = turn.move(MoveDto(moving="Na8b6"))
 
         self.assertIsInstance(next_turn, UserTurn)
         self.assertTrue(game.board.fen().startswith("k6r/8/1N6/8/8/8/3Q4/1R4K1 b"))

@@ -16,3 +16,9 @@ class IChessRepository(metaclass=abc.ABCMeta):
 
     async def delete_data(self, chess_game_id: str):
         pass
+
+    async def end_game(self, chess_game_id: str):
+        pass
+
+    async def reset_game(self, chess_game_id: str):
+        pass

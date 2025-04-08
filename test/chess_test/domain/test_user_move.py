@@ -25,7 +25,7 @@ class TestUserMove(unittest.TestCase):
     def test_user_move(self):
         game = ChessGame(self.sample_data1)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Nb1a3"))
+        next_turn = turn.move(MoveDto(moving="Nb1a3"))
 
         self.assertIsInstance(next_turn, AITurn)
         self.assertEqual(game.moves, ["Nb1a3"])
@@ -37,7 +37,7 @@ class TestUserMove(unittest.TestCase):
         turn = generate_turn(game)
 
         with self.assertRaises(IllegalMoveError):
-            turn.move(MoveDto(fen="Kb1a2"))
+            turn.move(MoveDto(moving="Kb1a2"))
 
         self.assertEqual(game.moves, [])
         self.assertEqual(game.turn, True)
@@ -48,7 +48,7 @@ class TestUserMove(unittest.TestCase):
         turn = generate_turn(game)
 
         with self.assertRaises(IllegalMoveError):
-            turn.move(MoveDto(fen="Nb1a2"))
+            turn.move(MoveDto(moving="Nb1a2"))
 
         self.assertEqual(game.moves, [])
         self.assertEqual(game.turn, True)
@@ -64,7 +64,7 @@ class TestUserMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Nd6e8"))
+        next_turn = turn.move(MoveDto(moving="Nd6e8"))
 
         self.assertEqual(next_turn, MoveResult.USER_LOSE_CUZ_KILL_KING)
         self.assertEqual(game.moves, [])
@@ -81,7 +81,7 @@ class TestUserMove(unittest.TestCase):
         )
         game = ChessGame(sample_data2)
         turn = generate_turn(game)
-        next_turn = turn.move(MoveDto(fen="Qd2a2"))
+        next_turn = turn.move(MoveDto(moving="Qd2a2"))
 
         self.assertEqual(next_turn, MoveResult.CHECKMATE_USER_WIN)
         self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/Q7/1R4K1 b"))
