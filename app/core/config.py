@@ -2,7 +2,6 @@ import os
 from typing import Final
 
 from dotenv import load_dotenv
-from pydantic import SecretStr
 
 load_dotenv()
 
