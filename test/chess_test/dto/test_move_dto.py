@@ -4,7 +4,6 @@ import chess
 
 from app.dto.move_dto import MoveDto
 
-#todo: 4자리수 케이스 추가하기
 class MoveDtoTest(unittest.TestCase):
     move_dto = MoveDto(moving="Qa1d1")
 

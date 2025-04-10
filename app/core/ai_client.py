@@ -8,7 +8,7 @@ from app.core.config import GPT_MODEL
 
 
 class AIResponseAboutMove(BaseModel):
-    ai_moving: str = Field(description="너의 움직임을 대수표기법으로 알려줘.")
+    ai_moving: str = Field(description="너의 움직임을 대수표기법으로 알려줘. 대수표기법에 출발지점도 포함시켜서 알려줘야해")
 
     result_fen: str = Field(description="""
         테스트를 위한 필드. 

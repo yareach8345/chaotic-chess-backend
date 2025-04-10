@@ -15,14 +15,14 @@ def fen_to_board(fen: str) -> Board:
 
 # 유저의 움직임을 수행
 # push_uci 메서드를 이용하여 "합법적인" 움직임만 강제
-def user_move(board: Board, move: MoveDto) -> bool:
-    board.push_uci(move.to_uci())
+def move(board: Board, move_dto: MoveDto) -> bool:
+    board.push_uci(move_dto.to_uci())
     return True
 
-def ai_move(board: Board, move: MoveDto) -> bool:
+def move_unsafe(board: Board, move_dto: MoveDto) -> bool:
     try:
-        board.push_uci(move.to_uci())
+        board.push_uci(move_dto.to_uci())
         return True
     except chess.IllegalMoveError:
-        board.push(Move.from_uci(move.to_uci()))
+        board.push(Move.from_uci(move_dto.to_uci()))
         return False

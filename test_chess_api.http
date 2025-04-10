@@ -1,0 +1,28 @@
+# testing chess endpoints
+
+GET http://127.0.0.1:8000/api/v1/game
+
+###
+
+GET http://127.0.0.1:8000/api/v1/game/history
+
+###
+
+POST http://127.0.0.1:8000/api/v1/game
+
+###
+
+POST http://127.0.0.1:8000/api/v1/game/move
+Content-Type: application/json
+
+{
+  "moving": "h4h5"
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/v1/game
+
+###
+
+PUT http://127.0.0.1:8000/api/v1/game/reset

@@ -6,7 +6,7 @@ from chess import Board
 from app.domain.chess_game import ChessGame
 from app.domain.turn import Turn, MoveResult
 from app.dto.move_dto import MoveDto
-from app.utils.chess_util import ai_move
+from app.utils.chess_util import move_unsafe
 
 class AITurn(Turn):
     _board: Board
@@ -39,7 +39,7 @@ class AITurn(Turn):
             self._board.set_piece_at(move_dto.get_start_square(), ai_piece)
 
 
-        is_legal_move = is_legal_move & ai_move(self._board, move_dto)
+        is_legal_move = is_legal_move & move_unsafe(self._board, move_dto)
 
         if piece is not None:
             self._board.set_piece_at(move_dto.get_start_square(), piece)

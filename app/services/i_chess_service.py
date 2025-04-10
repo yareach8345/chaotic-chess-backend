@@ -4,6 +4,7 @@ from typing import List
 from app.dto.game_info_dto import GameInfoDTO
 from app.dto.game_init_dto import GameInitDTO
 from app.dto.move_dto import MoveDto
+from app.dto.turn_result_dto import TurnResultDTO
 
 
 class IChessService(metaclass=abc.ABCMeta):
@@ -25,7 +26,7 @@ class IChessService(metaclass=abc.ABCMeta):
         """
         pass
 
-    async def take_a_move(self, game_id: str, user_move: MoveDto) -> GameInfoDTO:
+    async def take_a_turn(self, game_id: str, user_move: MoveDto) -> TurnResultDTO:
         """
         턴을 진행하는 로직이 작성된 함수
 

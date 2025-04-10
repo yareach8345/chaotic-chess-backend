@@ -4,6 +4,8 @@ from typing import List
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.core.database import get_mongo_client
+from app.domain.chess_game import ChessGame
+from app.domain.turn import MoveResult
 from app.dto.game_info_dto import from_chess_game_schema
 from app.dto.game_init_dto import GameInitDTO
 from app.dto.move_dto import MoveDto
@@ -50,11 +52,11 @@ class ChessServiceTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_take_a_turn(self):
         game_info = await self._chess_service.init_game(GameInitDTO(first="user"))
-        result = await self._chess_service.take_a_move(game_info.game_id, MoveDto(moving="Pb2b4"))
-        self.assertEqual(len(result.moves), len(game_info.moves) + 2)
+        result = await self._chess_service.take_a_turn(game_info.game_id, MoveDto(moving="Pb2b4"))
+        self.assertEqual(len(result.game_info.moves), len(game_info.moves) + 2)
         game_info_from_db = from_chess_game_schema(await self._chess_repository.get_by_id(game_info.game_id))
         await self._chess_repository.delete_data(game_info.game_id)
-        self.assertEqual(game_info_from_db, game_info)
+        self.assertEqual(game_info_from_db, result.game_info)
 
     async def test_get_history(self):
         test_id = await self._chess_repository.save(ChessGameSchema(
@@ -88,6 +90,30 @@ class ChessServiceTest(unittest.IsolatedAsyncioTestCase):
         game = await self._chess_repository.get_by_id(test_id)
         await self._chess_repository.delete_data(test_id)
         self.assertEqual(len(game.moves), 0)
+
+    async def test_user_kill_king(self):
+        chess_game = ChessGame(ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=[],
+            current_fen="rnbqkbnr/pppppPpp/8/8/8/8/PPPPP1PP/RNBQKBNR w"
+        ))
+        result = await self._chess_service._take_a_move(chess_game, MoveDto(moving="f7e8"))
+        self.assertEqual(len(result.moves), 1)
+        self.assertEqual(result.move_result, MoveResult.USER_LOSE_CUZ_KILL_KING)
+        self.assertIsNone(result.ai_message)
+
+    async def test_user_checkmated(self):
+        chess_game = ChessGame(ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=[],
+            current_fen="k7/7R/8/8/8/8/8/6R1 w"
+        ))
+        result = await self._chess_service._take_a_move(chess_game, MoveDto(moving="Rg1g8"))
+        self.assertEqual(len(result.moves), 1)
+        self.assertEqual(result.move_result, MoveResult.CHECKMATE_USER_WIN)
+        self.assertIsNone(result.ai_message)
 
 if __name__ == '__main__':
     unittest.main()

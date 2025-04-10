@@ -4,7 +4,7 @@ from chess import Board
 
 from app.dto.move_dto import MoveDto
 from app.schemas.chess_game_schema import ChessGameSchema
-from app.utils.chess_util import fen_to_board, user_move, ai_move
+from app.utils.chess_util import fen_to_board, move, move_unsafe
 
 class ChessGame:
 
