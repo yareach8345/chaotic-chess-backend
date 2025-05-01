@@ -25,7 +25,7 @@ class AITurn(Turn):
         is_legal_move = True
         piece: chess.Piece | None = None
 
-        if self._game.ai_color != self._board.piece_at(move_dto.get_start_square()).color:
+        if self._board.piece_at(move_dto.get_start_square()) is None or self._game.ai_color != self._board.piece_at(move_dto.get_start_square()).color:
             is_legal_move = False
             piece = self._board.piece_at(move_dto.get_start_square())
 

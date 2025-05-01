@@ -2,8 +2,6 @@ from typing import List, Annotated, Any, Coroutine
 
 from dependency_injector.wiring import inject, Provide
 from fastapi import APIRouter, Depends, Response, Cookie, Request, HTTPException
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.responses import JSONResponse
 
 from app.core.container import Container
 from app.dto.game_info_dto import GameInfoDTO
