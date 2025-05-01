@@ -16,7 +16,7 @@ from app.schemas.chess_game_schema import ChessGameSchema
 from app.services.ai_service import AIService
 
 from app.services.i_chess_service import IChessService
-from app.utils.chess_util import init_game
+from app.utils.chess_util import init_game, get_movable_cells, get_piece_info_from_fen
 
 
 class _TurnResult(BaseModel):
@@ -120,12 +120,14 @@ class ChessService(IChessService):
             await self._repository.end_game(game_id)
 
         #db에 저장한다.
+        result_fen = chess_game.board.fen()
         game_info_after_turn = GameInfoDTO(
             game_id = game_id,
             moves = chess_game.moves,
             white = "ai" if chess_game.ai_color == True else "user",
-            fen = chess_game.board.fen(),
+            fen = result_fen,
             game_status = "ongoing",
+            pieces = await get_piece_info_from_fen(result_fen),
         )
         await self._repository.update_by_moving(game_id, DBUpdateWithMovingDto(
             moves = turn_result.moves,
@@ -148,4 +150,4 @@ class ChessService(IChessService):
 
     async def reset_game(self, game_id: str) -> GameInfoDTO:
         await self._repository.reset_game(game_id)
-        return from_chess_game_schema(await self._repository.get_by_id(game_id))
+        return await from_chess_game_schema(await self._repository.get_by_id(game_id))
