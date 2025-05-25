@@ -38,7 +38,7 @@ class ChessServiceTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.moves, [])
         self.assertTrue(result.fen.startswith("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"))
         self.assertIsNotNone(result.game_id)
-        self.assertEqual(from_chess_game_schema(game_data_from_repository), result)
+        self.assertEqual(await from_chess_game_schema(game_data_from_repository), result)
 
     async def test_load_game(self):
         result = await self._chess_service.init_game(GameInitDTO(first="user"))
@@ -54,7 +54,7 @@ class ChessServiceTest(unittest.IsolatedAsyncioTestCase):
         game_info = await self._chess_service.init_game(GameInitDTO(first="user"))
         result = await self._chess_service.take_a_turn(game_info.game_id, MoveDto(moving="Pb2b4"))
         self.assertEqual(len(result.game_info.moves), len(game_info.moves) + 2)
-        game_info_from_db = from_chess_game_schema(await self._chess_repository.get_by_id(game_info.game_id))
+        game_info_from_db = await from_chess_game_schema(await self._chess_repository.get_by_id(game_info.game_id))
         await self._chess_repository.delete_data(game_info.game_id)
         self.assertEqual(game_info_from_db, result.game_info)
 

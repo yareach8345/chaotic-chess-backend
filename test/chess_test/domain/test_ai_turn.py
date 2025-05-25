@@ -40,6 +40,48 @@ class TestAIMove(unittest.TestCase):
         self.assertEqual(game.turn, False)
         self.assertTrue(game.board.fen().startswith("rnbqkbnr/pppppppp/8/8/8/8/NPPPPPPP/R1BQKBNR b"))
 
+    def test_ai_promotion(self):
+        sample_data = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["Pd2d1"],
+            current_fen="k6r/8/8/8/8/8/3p4/1R4K1 b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="Pd2d1"))
+        self.assertIsInstance(next_turn, UserTurn)
+        self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/8/1R1q2K1 w"))
+
+    def test_ai_try_users_king(self):
+        sample_data = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["Pd2d1"],
+            current_fen="k6r/8/8/8/8/8/5p2/1R4K1 b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="Pf2g1"))
+        self.assertEqual(next_turn, MoveResult.USER_LOSE_CUZ_KING_KILLED_BY_AI)
+        self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/8/1R4q1 w"))
+
+    def test_ai_try_selves_king(self):
+        sample_data = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["Pd2d1"],
+            current_fen="k6r/8/8/8/8/8/5p2/1R4K1 b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="h8a8"))
+        self.assertEqual(next_turn, MoveResult.AI_PIECE_KILL_AI_KING)
+        self.assertTrue(game.board.fen().startswith("r7/8/8/8/8/8/5p2/1R4K1 w"))
+
     def test_ai_checkmate(self):
         sample_data2 = ChessGameSchema(
             game_status="ongoing",

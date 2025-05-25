@@ -57,8 +57,8 @@ class ChessRepository(IChessRepository):
         result = await self._chess_collection.delete_one({ "_id": ObjectId(chess_game_id) })
         return result.deleted_count != 0
 
-    async def end_game(self, chess_game_id: str):
-        await self._chess_collection.update_one( { "_id": ObjectId(chess_game_id) }, { "$set" : {"game_status": "finished", "updated_at": datetime.datetime.now(datetime.UTC) }} )
+    async def end_game(self, chess_game_id: str, result: str = "finished"):
+        await self._chess_collection.update_one( { "_id": ObjectId(chess_game_id) }, { "$set" : {"game_status": result, "updated_at": datetime.datetime.now(datetime.UTC) }} )
 
     async def reset_game(self, chess_game_id: str):
         await self._chess_collection.update_one(

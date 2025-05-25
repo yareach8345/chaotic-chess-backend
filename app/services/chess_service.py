@@ -1,6 +1,5 @@
 from typing import List
 
-from chess import Board
 from pydantic import BaseModel
 
 from app.domain.chess_game import ChessGame
@@ -16,7 +15,7 @@ from app.schemas.chess_game_schema import ChessGameSchema
 from app.services.ai_service import AIService
 
 from app.services.i_chess_service import IChessService
-from app.utils.chess_util import init_game, get_movable_cells, get_piece_info_from_fen
+from app.utils.chess_util import init_game, get_piece_info_from_fen
 
 
 class _TurnResult(BaseModel):
@@ -44,14 +43,14 @@ class ChessService(IChessService):
         )
 
         new_game_id = await self._repository.save(new_game_schema)
-        result = from_chess_game_schema(new_game_schema)
+        result = await from_chess_game_schema(new_game_schema)
         result.game_id = new_game_id
         return result
 
     async def load_game(self, game_id: str) -> GameInfoDTO | None:
         schema = await self._repository.get_by_id(game_id)
         if schema is not None:
-            return from_chess_game_schema(schema)
+            return await from_chess_game_schema(schema)
         else:
             return None
 
@@ -77,7 +76,7 @@ class ChessService(IChessService):
             raise Exception("IMPASSIBLE")
 
         #반복문은 ai가 엉뚱한 답을 보냈을 경우 다시 실행하기 위함
-        while(True):
+        while True:
             #ai의 움직임을 생성하고
             ai_moving = self._ai_service.get_next_move(
                 AIRequestDTO(
@@ -95,7 +94,7 @@ class ChessService(IChessService):
 
                 moves_in_this_turn.append(ai_move_dto.moving)
                 break
-        if isinstance(ai_move_dto, MoveResult):
+        if isinstance(ai_turn_result, MoveResult):
             return _TurnResult(
                 moves = moves_in_this_turn,
                 move_result= ai_turn_result,

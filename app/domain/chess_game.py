@@ -7,7 +7,16 @@ from app.schemas.chess_game_schema import ChessGameSchema
 from app.utils.chess_util import fen_to_board, move, move_unsafe
 
 class ChessGame:
+    """
+    채스 게임의 상태를 저장하는 클래스
 
+    맴버변수:
+        board (Board): 현재 게임의 보드 상태를 저장, 게임을 진행하는데 필요한 Board 객체
+        moves (List[str]): 게임의 시작부터 현재까지의 움직임의 결과를 담는 배열
+        user_color (Final[bool]): user의 말의 색깔을 기록
+        ai_color (Final[bool]): ai의 말의 색깔을 기록
+        turn (bool): 혀재 누구의 턴인지 기록한다. turn에 저장된 값과 동일한 값을 가지고 있는 쪽의 차례이다.
+    """
     board: Board
 
     #현재턴까지의 이동 기록
@@ -30,5 +39,11 @@ class ChessGame:
         self.turn = True if len(self.moves) % 2 == 0 else False
 
     def after_turn(self, move: MoveDto):
+        """
+        move정보를 받아 moves를 업데이트 합니다.
+
+        Args:
+            move (MoveDto): 업데이트 할 move
+        """
         self.turn = not self.turn
         self.moves.append(move.moving)

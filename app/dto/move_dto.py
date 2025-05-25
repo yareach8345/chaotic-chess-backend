@@ -4,10 +4,16 @@ from typing import Any
 import chess
 from pydantic import BaseModel, Field
 
-chess_moving_regex = re.compile(r"(?P<piece>[PRNBKQ])?(?P<start>[a-h][1-8])(?P<x>x)?(?P<end>[a-h][1-8])(?P<promotion>[rnbq])?(?P<check>[+#])?")
+chess_moving_regex = re.compile(r"(?P<piece>[PRNBKQ])?(?P<start>[a-h][1-8])(?P<x>x)?(?P<end>[a-h][1-8])(?P<promotion>[rnbqRNBQ])?(?P<check>[+#])?")
 
 class MoveDto(BaseModel):
     moving: str
+
+    def set_piece(self, piece: str):
+        if self.is_piece_symbol_written():
+            self.moving = piece + self.moving[1:]
+        else:
+            self.moving = piece + self.moving
 
     def can_parsing(self) -> bool:
         return chess_moving_regex.match(self.moving) is not None
@@ -15,6 +21,10 @@ class MoveDto(BaseModel):
     def to_uci(self):
         match = chess_moving_regex.match(self.moving)
         return f"{match.group("start")}{match.group("end")}{match.group("promotion") if match.group("promotion") else ""}"
+
+    def is_piece_symbol_written(self):
+        match = chess_moving_regex.match(self.moving)
+        return match.group("piece") is not None
 
     def get_piece(self):
         match = chess_moving_regex.match(self.moving)

@@ -11,7 +11,9 @@ class MoveResult(Enum):
     CHECKMATE_USER_WIN = "checkmate_user_win"
     CHECKMATE_USER_LOSE = "checkmate_user_lose"
     USER_LOSE_CUZ_KILL_KING = "user_lose_cuz_kill_king"
+    USER_LOSE_CUZ_KING_KILLED_BY_AI = "user_lose_cuz_killed_by_ai"
     ILLEGAL_INPUT = "illegal_input"
+    AI_PIECE_KILL_AI_KING = "coup d'etat"
 
 class Turn(metaclass=abc.ABCMeta):
     _color: bool
@@ -49,6 +51,7 @@ class Turn(metaclass=abc.ABCMeta):
         for step in chain:
             result = step(move)
             if result is not MoveResult.ONGOING:
+                print("????")
                 return result
 
         return self._generate_next_turn()
