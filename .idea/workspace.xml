@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="edit : game_info_dto에 의해 수정해야 하는 사항 수정">
+    <list default="true" id="780e1a73-dc5b-4091-8cb5-ec55b7a8a30f" name="변경" comment="feat: 체스게임 게선">
       <change beforePath="$PROJECT_DIR$/.idea/ChaoticChess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChaoticChess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/domain/ai_turn.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/ai_turn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/domain/chess_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/chess_game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/domain/turn.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/turn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dto/move_dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dto/move_dto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/domain/user_turn.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/domain/user_turn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dto/game_init_dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dto/game_init_dto.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/chess_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/chess_repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/i_chess_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/i_chess_repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/chess_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/chess_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/chess_test/domain/test_ai_turn.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/domain/test_ai_turn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/chess_test/services/test_chess_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/chess_test/services/test_chess_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +200,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -400,6 +402,11 @@
       <workItem from="1747273532767" duration="5000" />
       <workItem from="1747358070907" duration="13000" />
       <workItem from="1747896468840" duration="7117000" />
+      <workItem from="1748142010917" duration="341000" />
+      <workItem from="1748145371086" duration="4728000" />
+      <workItem from="1748172567378" duration="1599000" />
+      <workItem from="1748441510086" duration="959000" />
+      <workItem from="1748442742975" duration="393000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -705,7 +712,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746084058968</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="feat: 체스게임 게선">
+      <option name="closed" value="true" />
+      <created>1748142214125</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1748142214125</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,7 +770,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore: add mongodb connect info into .env&#10;&#10;.env파일에 MONGODB_CONNECTIOIN_STRING을 추가" />
     <MESSAGE value="feat: add mongo connection feature and add test&#10;&#10;몽고db에 연결할 수 있게 코드를 추가하였다.&#10;core/database.py의 get_mongo_client 팩토리 함수로 클라이언트를 생성할 수 있다.&#10;&#10;직접 생성하여 사용하지는 말고 이후 만들어질 container를 사용해서 사용해주길 바란다." />
     <MESSAGE value="renamed class 'MongoDBTest' to 'TestMongoDB' and file mongodb_test.py to test_mongodb.py&#10;&#10;파이썬에서 주로 사용되는 형식으로 테스트 코드를 담은 파일명과 클래스 명을 변경하였습니다." />
     <MESSAGE value="Refactor: change type of id field in ChessGameSchema from 'UUID' to 'str'&#10;&#10;몽고db에 데이터를 저장하는 프로젝트의 특성상 체스게임 데이터에 접근하기 위해 사용되는 식별자를 UUID에서 ObjectId로 변경하게 되었습니다.&#10;이에 맞추어 ChessGameSchema의 id필드 또한 str타입으로 바뀌에 되었습니다.&#10;&#10;이 변경의 이유는 아래와 같습니다.&#10;1. 몽고db의 특정 데이터에 접근하는 식별자라는 특성상 몽고db에 최적화되어 제작되었을 ObjectId측면이 기존 계획의 UUID보다 효율 적일것이라 판단 되었습니다.&#10;2. 조사를 해본 결과 기존에 UUID를 선택했던 이유인 '유일한 식별자가 필요하다.'라는 조건이 ObjectId의 작동방식으로도 충분히 만족할 것으로 판단 되었습니다.&#10;3. ObjectId는 str객체로 바꾸거나 그 역의 변환도 쉽게 가능하여 UUID와 마찬가지로 클라이언트와 통신하는 것에 장애가 될것이 없다 판단 하였습니다." />
@@ -780,7 +794,8 @@
     <MESSAGE value="edit: add codes for game_info_dto" />
     <MESSAGE value="edit : ai_turn 개선 &amp; chess_routes 수정" />
     <MESSAGE value="edit : game_info_dto에 의해 수정해야 하는 사항 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit : game_info_dto에 의해 수정해야 하는 사항 수정" />
+    <MESSAGE value="feat: 체스게임 게선" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 체스게임 게선" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ChaoticChess$.coverage" NAME=" 커버리지 결과" MODIFIED="1744252324643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/chess_test/services" />
@@ -793,7 +808,7 @@
     <SUITE FILE_PATH="coverage/ChaoticChess$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1746771839115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ChaoticChess$testing.coverage" NAME="testing 커버리지 결과" MODIFIED="1743310468343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/ChaoticChess$chess_util.coverage" NAME="chess_util 커버리지 결과" MODIFIED="1742994266376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/utils" />
-    <SUITE FILE_PATH="coverage/chaotic_chess_backend$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1747906965720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/chaotic_chess_backend$ChaoticChess.coverage" NAME="ChaoticChess 커버리지 결과" MODIFIED="1748442798301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ChaoticChess$chess_game.coverage" NAME="chess_game 커버리지 결과" MODIFIED="1743431754825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/domain" />
     <SUITE FILE_PATH="coverage/ChaoticChess$ai_client.coverage" NAME="ai_client 커버리지 결과" MODIFIED="1744099420602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core" />
   </component>

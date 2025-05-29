@@ -1,5 +1,6 @@
 import abc
 
+from app.domain.turn import MoveResult
 from app.dto.db_update_dto import DBUpdateWithMovingDto
 from app.schemas.chess_game_schema import ChessGameSchema
 
@@ -17,7 +18,7 @@ class IChessRepository(metaclass=abc.ABCMeta):
     async def delete_data(self, chess_game_id: str):
         pass
 
-    async def end_game(self, chess_game_id: str, result: str):
+    async def end_game(self, chess_game_id: str, result: MoveResult):
         pass
 
     async def reset_game(self, chess_game_id: str):

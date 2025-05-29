@@ -3,6 +3,8 @@ import datetime
 from bson import ObjectId
 from chess import Board
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection
+
+from app.domain.turn import MoveResult
 from app.dto.db_update_dto import DBUpdateWithMovingDto
 from app.repositories.i_chess_repository import IChessRepository
 from app.schemas.chess_game_schema import ChessGameSchema
@@ -57,8 +59,8 @@ class ChessRepository(IChessRepository):
         result = await self._chess_collection.delete_one({ "_id": ObjectId(chess_game_id) })
         return result.deleted_count != 0
 
-    async def end_game(self, chess_game_id: str, result: str = "finished"):
-        await self._chess_collection.update_one( { "_id": ObjectId(chess_game_id) }, { "$set" : {"game_status": result, "updated_at": datetime.datetime.now(datetime.UTC) }} )
+    async def end_game(self, chess_game_id: str, result: MoveResult = MoveResult.ONGOING):
+        await self._chess_collection.update_one( { "_id": ObjectId(chess_game_id) }, { "$set" : {"game_status": result.value, "updated_at": datetime.datetime.now(datetime.UTC) }} )
 
     async def reset_game(self, chess_game_id: str):
         await self._chess_collection.update_one(

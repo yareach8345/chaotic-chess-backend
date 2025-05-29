@@ -11,9 +11,9 @@ class MoveResult(Enum):
     CHECKMATE_USER_WIN = "checkmate_user_win"
     CHECKMATE_USER_LOSE = "checkmate_user_lose"
     USER_LOSE_CUZ_KILL_KING = "user_lose_cuz_kill_king"
-    USER_LOSE_CUZ_KING_KILLED_BY_AI = "user_lose_cuz_killed_by_ai"
+    USER_LOSE_CUZ_KING_KILLED_BY_AI = "user_lose_cuz_user_king_killed_by_ai"
     ILLEGAL_INPUT = "illegal_input"
-    AI_PIECE_KILL_AI_KING = "coup d'etat"
+    AI_PIECE_KILL_AI_KING = "coup_detat"
 
 class Turn(metaclass=abc.ABCMeta):
     _color: bool

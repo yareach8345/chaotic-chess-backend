@@ -116,7 +116,7 @@ class ChessService(IChessService):
         #게임이 계속될 수 있는지 확인한다. 만약 종료해야 하는 경우는
         if turn_result.move_result != MoveResult.ONGOING:
             #게임을 종료 처리 후
-            await self._repository.end_game(game_id)
+            await self._repository.end_game(game_id, turn_result.move_result)
 
         #db에 저장한다.
         result_fen = chess_game.board.fen()
