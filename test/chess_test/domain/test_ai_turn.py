@@ -68,6 +68,22 @@ class TestAIMove(unittest.TestCase):
         self.assertEqual(next_turn, MoveResult.USER_LOSE_CUZ_KING_KILLED_BY_AI)
         self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/8/1R4q1 w"))
 
+    def test_ai_try_users_king2(self):
+        sample_data = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["kc5d1"],
+            current_fen="k6r/8/8/8/8/8/5p2/1R4K1 b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="Kc5g1"))
+        self.assertEqual(next_turn, MoveResult.USER_LOSE_CUZ_KING_KILLED_BY_AI)
+        print(game.board.fen())
+        self.assertTrue(game.board.fen().startswith("k6r/8/8/8/8/8/5p2/1R4k1 w"))
+
+
     def test_ai_try_selves_king(self):
         sample_data = ChessGameSchema(
             game_status="ongoing",
@@ -131,6 +147,33 @@ class TestAIMove(unittest.TestCase):
         self.assertTrue(game.board.fen().startswith("k6r/8/1N6/8/8/8/3Q4/1R4K1 b"))
         self.assertEqual(game.turn, False)
 
+    def test_regen_white_king(self):
+        sample_data2 = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["Kg1h1"],
+            current_fen="k7/8/8/8/8/8/8/7K b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data2)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="Qh1g2"))
+        self.assertIsInstance(next_turn, UserTurn)
+        self.assertTrue(game.board.fen().startswith("k7/8/8/8/8/8/6q1/7K w"))
+
+    def test_regen_black_king(self):
+        sample_data2 = ChessGameSchema(
+            game_status="ongoing",
+            white="user",
+            moves=["Kg1h1"],
+            current_fen="k7/8/8/8/8/8/8/7K b",
+            updated_at=datetime.now(timezone.utc)
+        )
+        game = ChessGame(sample_data2)
+        turn = generate_turn(game)
+        next_turn = turn.move(MoveDto(moving="Qa8g2"))
+        self.assertIsInstance(next_turn, UserTurn)
+        self.assertTrue(game.board.fen().startswith("k7/8/8/8/8/8/6q1/7K w"))
 
 if __name__ == '__main__':
     unittest.main()

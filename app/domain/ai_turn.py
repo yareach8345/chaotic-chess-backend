@@ -12,7 +12,8 @@ class AITurn(Turn):
     _board: Board
     captured_piece: chess.Piece | None = None
     # 킹의 위치에서 부터 킹이 아닌 다른 기물이 움직이기 시작할 때 원래 자리에 생성하기 위한 플래그
-    needRegenKing: bool = False
+    # 시작지점의 왕의 색이 백인경우 1, 흑인경우 2, 생성할 필요가 없을 경우 0
+    needRegenKing: int = 0
     def __init__(self, game: ChessGame):
         super().__init__(game.ai_color, game)
         self._board = game.board
@@ -36,7 +37,8 @@ class AITurn(Turn):
 
         # 만약 킹이 아닌 다른 기물이 킹의 위치에서 이동하는 경우 킹을 새로 생성하기 위해 플래그를 설정
         if piece_at_start is not None and str(piece_at_start).lower() == 'k' and move_dto.get_piece().piece_type != chess.KING:
-            self.needRegenKing = True
+            #시작지점의 킹의 색깔이 백인경우1, 흑인경우2
+            self.needRegenKing = 1 if piece_at_start.color == True else 2
 
         #잡은 기물을 확인
         self.captured_piece = self._board.piece_at(move_dto.get_end_square())
@@ -59,7 +61,6 @@ class AITurn(Turn):
             ai_piece.color = self._game.ai_color
             self._board.set_piece_at(move_dto.get_start_square(), ai_piece)
 
-
         is_legal_move = is_legal_move & move_unsafe(self._board, move_dto)
 
         if piece is not None:
@@ -71,9 +72,10 @@ class AITurn(Turn):
         return MoveResult.ONGOING
 
     def _after_moving(self, move_dto: MoveDto) -> MoveResult:
-        if self.needRegenKing:
+        if self.needRegenKing != 0:
             # 킹을 새로 생성
-            self._board.set_piece_at(move_dto.get_start_square(), chess.Piece(chess.KING, self._game.ai_color))
+            # 1일 경우 백 생성, 2일 경우 흑 생성
+            self._board.set_piece_at(move_dto.get_start_square(), chess.Piece(chess.KING, self.needRegenKing == 1))
 
         end_sqare = move_dto.get_end_square()
         piece_symbol_in_end_square = str(self._board.piece_at(end_sqare))
@@ -87,10 +89,9 @@ class AITurn(Turn):
             #체크메이트
             return MoveResult.CHECKMATE_USER_LOSE
         if self.captured_piece is not None and str(self.captured_piece) == ("k" if self._game.ai_color else "K"):
-            #유저 킹이 AI가 먹힘
+            #유저 킹이 AI에게 먹힘
             return MoveResult.USER_LOSE_CUZ_KING_KILLED_BY_AI
         if self.captured_piece is not None and str(self.captured_piece) == ("K" if self._game.ai_color else "k"):
             #AI 킹이 AI 기물에게 먹힘
             return MoveResult.AI_PIECE_KILL_AI_KING
         return MoveResult.ONGOING
-

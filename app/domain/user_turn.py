@@ -16,7 +16,6 @@ class UserTurn(Turn):
         self._board = game.board
 
     def _before_moving(self, move_dto: MoveDto) -> MoveResult:
-        print("HELLO WORLD!!!")
         piece = self._board.piece_at(move_dto.get_start_square())
         if piece.piece_type != move_dto.get_piece().piece_type or piece.color != self._game.user_color:
             raise IllegalMoveError(f"Fen is {move_dto.moving}. But a piece in the cell '{move_dto.get_start_square()}' is ${move_dto.get_piece()}")

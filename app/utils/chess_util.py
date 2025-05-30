@@ -45,10 +45,19 @@ def move(board: Board, move_dto: MoveDto) -> bool:
     board.push_uci(move_dto.to_uci())
     return True
 
+def _illegal_move(board: Board, move_dto: MoveDto) -> bool:
+    if move_dto.get_start_square() != move_dto.get_end_square():
+        board.push(Move.from_uci(move_dto.to_uci()))
+    else:
+        board.push(chess.Move.null())
+    return False
+
+
 def move_unsafe(board: Board, move_dto: MoveDto) -> bool:
     try:
         board.push_uci(move_dto.to_uci())
         return True
     except chess.IllegalMoveError:
-        board.push(Move.from_uci(move_dto.to_uci()))
-        return False
+        return _illegal_move(board, move_dto)
+    except chess.InvalidMoveError:
+        return _illegal_move(board, move_dto)
