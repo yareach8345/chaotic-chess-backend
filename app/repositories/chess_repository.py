@@ -74,3 +74,12 @@ class ChessRepository(IChessRepository):
                 },
             }
         )
+
+    async def check_game_is_exist(self, chess_game_id: str) -> bool:
+        find_result = await self._chess_collection.find_one_and_update(
+            {"_id": ObjectId(chess_game_id)},
+            {
+                "$set": { "updated_at": datetime.datetime.now(datetime.UTC), }
+            }
+        )
+        return find_result is not None

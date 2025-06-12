@@ -69,5 +69,14 @@ class TestChessRepository(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(get_result)
         self._id = None
 
+    async def test_check_game_is_exist(self):
+        result = await self._repository.check_game_is_exist(self._id)
+        self.assertTrue(result)
+
+    async def test_check_game_is_not_exist(self):
+        result = await self._repository.check_game_is_exist(str(ObjectId()))
+        self.assertFalse(result)
+
+
 if __name__ == '__main__':
     unittest.main()

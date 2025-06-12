@@ -150,3 +150,6 @@ class ChessService(IChessService):
     async def reset_game(self, game_id: str) -> GameInfoDTO:
         await self._repository.reset_game(game_id)
         return await from_chess_game_schema(await self._repository.get_by_id(game_id))
+
+    async def check_game_is_exist(self, chess_game_id: str) -> bool:
+        return await self._repository.check_game_is_exist(chess_game_id)

@@ -12,6 +12,13 @@ from app.services.chess_service import ChessService
 
 chess_router = APIRouter(prefix="/game")
 
+@chess_router.get("/check")
+@inject
+async def check_game_is_exists(request: Request, chess_service: ChessService = Depends(Provide[Container.chess_service])) -> bool:
+    game_id = request.cookies.get("game_id")
+    if game_id is None:
+        return False
+    return await chess_service.check_game_is_exist(game_id)
 
 @chess_router.post("/")
 @inject
@@ -26,6 +33,7 @@ async def init_game(request: Request, response: Response, chess_service: ChessSe
         value = new_game.game_id,
         max_age = 7200,
         path = "/",
+        httponly = True
     )
     response.status_code = 201
     return new_game

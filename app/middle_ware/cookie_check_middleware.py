@@ -12,7 +12,18 @@ class CookieCheckMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         #해당 요청이 game init에 대한 요청이 아니며
         path = request.url.path
-        if path.startswith("/api") and not((path.endswith("/game/") or path.endswith("/game")) and request.method == "POST"):
+
+        # 쿠키 체크를 위한 경우 예외
+        if (
+            path.startswith("/api") and
+            path.endswith("/game/check")
+        ):
+            return await call_next(request)
+
+        if (
+            path.startswith("/api") and
+            not((path.endswith("/game/") or path.endswith("/game")) and request.method == "POST")
+        ):
             game_id = request.cookies.get("game_id")
             #game_id라는 쿠키가 없을 시
             if game_id is None:

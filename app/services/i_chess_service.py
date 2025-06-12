@@ -63,3 +63,12 @@ class IChessService(metaclass=abc.ABCMeta):
         :return:
         """
         pass
+
+    async def check_game_is_exist(self, chess_game_id: str) -> bool:
+        """
+        해당 ID의 게임이 존재하는지 확인한다.
+
+        :param chess_game_id:
+        :return : 존재하면 True 존재하지 않으면 False이다.
+        """
+        pass
