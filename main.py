@@ -1,4 +1,5 @@
 import uvicorn
+import os
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -11,11 +12,18 @@ app = FastAPI(
     version="0.0.0",
 )
 
+origins = [
+    origin.strip() for origin in os.getenv("CORS_ORIGINS", "").split(",") if origin.strip()
+]
+
+if len(origins) == 0:
+    origins.append("*")
+
 app.include_router(api_router, prefix="/api/v1")
 app.add_middleware(CookieCheckMiddleware)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
