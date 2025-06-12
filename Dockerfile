@@ -6,8 +6,6 @@ COPY ./requirements.txt /chaotic-chess/requirements.txt
 
 COPY ./main.py /chaotic-chess/main.py
 
-COPY .env /chaotic-chess/.env
-
 RUN pip install --no-cache-dir --upgrade -r /chaotic-chess/requirements.txt
 
 COPY ./app /chaotic-chess/app
